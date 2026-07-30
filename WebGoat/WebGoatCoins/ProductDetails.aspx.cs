@@ -89,7 +89,7 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
                 string customerNumber = Request.Cookies["customerNumber"].Value;
 
                 string email = du.GetCustomerEmail(customerNumber);
-                string email2 = du.GetCustomerEmail(customerNumber);
+                string email2 = du.GetCustomerEmail2(customerNumber);
                 txtEmail.Text = email;
                 txtEmail.ReadOnly = true;
             }

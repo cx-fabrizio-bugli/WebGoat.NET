@@ -212,6 +212,30 @@ namespace OWASP.WebGoat.NET.App_Code.DB
             return output;
         }
 
+public string GetCustomerEmail2(string customerNumber)
+        {
+            string output = null;
+            try
+            {
+
+                using (MySqlConnection connection = new MySqlConnection(_connectionString))
+                {
+                    string sql = "select email from CustomerLogin where customerNumber = @customerNumber";
+                    MySqlCommand command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@customerNumber", customerNumber);
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                        output = result.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                output = ex.Message;
+            }
+            return output;
+        }
+
         public DataSet GetCustomerDetails(string customerNumber)
         {
             string sql = "select Customers.customerNumber, Customers.customerName, Customers.logoFileName, Customers.contactLastName, Customers.contactFirstName, " +
