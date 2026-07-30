@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
-
+//CUSTOM CODE GOES HERE
 namespace OWASP.WebGoat.NET.App_Code.DB
 {
     public class MySqlDbProvider : IDbProvider
