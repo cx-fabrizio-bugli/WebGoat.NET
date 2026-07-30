@@ -217,13 +217,17 @@ public string GetCustomerEmail2(string customerNumber)
             string output = null;
             try
             {
-            
+
                 using (MySqlConnection connection = new MySqlConnection(_connectionString))
                 {
-                    string sql = "select email from CustomerLogin where customerNumber = " + customerNumber;
+                    string sql = "select email from CustomerLogin where customerNumber = @customerNumber";
                     MySqlCommand command = new MySqlCommand(sql, connection);
-                    output = command.ExecuteScalar().ToString();
-                } 
+                    command.Parameters.AddWithValue("@customerNumber", customerNumber);
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                        output = result.ToString();
+                }
             }
             catch (Exception ex)
             {
